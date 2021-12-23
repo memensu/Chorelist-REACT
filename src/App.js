@@ -1,24 +1,32 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
+  const [choreList, setChoreList] = useState([]);
+  const [choreInput, setChoreInput] = useState("");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="App"> To Do List</div>
+      <div id="description"> add chores</div>
+      <input id="inputbox" type= "text" placeholder='add chores here'
+            onChange={(event) => {
+              const typedLetter = event.target.value;
+              setChoreInput(typedLetter)
+            }}
+      >
+  
+      </input>
+      <div>
+        {choreList.map((chore) => <div>{chore}</div>)}
+      </div>
+      <button id='clickbutton' onClick={() => {
+        setChoreList([...choreList, choreInput])
+
+      }
+    }> Clicke Here</button>
+    </>
   );
 }
 
